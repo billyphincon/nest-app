@@ -19,4 +19,12 @@ export class UsersService {
   findUsers() {
     return this.userRepository.find();
   }
+
+  updateUsers(id: number, createUserDto: CreateUserDto) {
+    return this.userRepository.createQueryBuilder().update().set({name: createUserDto.name, mobile: createUserDto.mobile, email: createUserDto.email}).where('id = :id', {id}).execute();
+  }
+
+  deleteUsers(id: number) {
+    return this.userRepository.delete(id);
+  }
 }
